@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link res="stylesheet" href="./style.css" />
+    <title>成本录入系统</title>
+    <style>
+      section { margin-bottom: 15px; border: 1px solid #f0f0f0; overflow: hidden;}
+      section h5 { padding: 14px 15px; background: #f7f7f7; }
+      section .row { padding: 7px 15px; margin-bottom: 8px; }
+      section .row-head { border-bottom: 1px solid #f0f0f0; }
+      section .row-foot { border-top: 1px solid #f0f0f0; font-weight: 700; background: #f9f9f9; margin-bottom: 0;}
+      input, select { width: 100% }
+      .sale { width: 60px; float: left; margin-right: 5px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>商品成本录入</h1>
+      <section>
+        <h5>商品信息</h5>
+        <div class="row">
+          <div class="col-2">商品名称</div>
+          <div class="col-6"><input type="text"/></div>
+        </div>
+        <div class="row">
+          <div class="col-2">SKU</div>
+          <div class="col-3"><input type="text"/></div>
+        </div>
+      </section>
+      <div class="row">
+        <div class="col-7">
+          <section id="goods" class="multiple">
+            <h5>商品成本</h5>
+            <div class="row row-head">
+              <div class="col-4">名称</div>
+              <div class="col">单价</div>
+              <div class="col">数量</div>
+              <div class="col">小计</div>
+              <div class="col"><a class="add-item">[+]</a></div>
+            </div>
+            <div class="row">
+              <div class="col-4"><input type="text"/></div>
+              <div class="col"><input type="text"/></div>
+              <div class="col"><input type="text"/></div>
+              <div class="col">0</div>
+              <div class="col"><a class="remove-item">[-]</a></div>
+            </div>
+          </section>
+          <section id="material" class="multiple">
+            <h5>耗材成本</h5>
+            <div class="row row-head">
+              <div class="col-4">名称</div>
+              <div class="col">单价</div>
+              <div class="col">数量</div>
+              <div class="col">小计</div>
+              <div class="col"><a class="add-item">[+]</a></div>
+            </div>
+            <div class="row">
+              <div class="col-4"><input type="text"/></div>
+              <div class="col"><input type="text"/></div>
+              <div class="col"><input type="text"/></div>
+              <div class="col">0</div>
+              <div class="col"><a class="remove-item">[-]</a></div>
+            </div>
+          </section>
+          <section id="logistics">
+            <h5>物流成本</h5>
+            <div class="row">
+              <div class="col-2">物流公司</div>
+              <div class="col-3">
+                <select id="company">
+                    <option>请选择</option>
+                    <option value="sf">顺丰速运</option>
+                    <option value="yt">圆通快递</option>
+                </select>
+              </div>
+              <div class="col-2">物流费用</div>
+              <div class="col-3"><input type="text"/></div>
+            </div>
+          </section>
+          <section id="advertise">
+              <h5>营销成本</h5>
+              <div class="row">
+                <div class="col-2">营销预算</div>
+                <div class="col-3"><input type="text"/></div>
+                <div class="col">请输入营销预算的销售占比百分点，如:6,表示6%</div>
+              </div>
+            </section>
+        </div>
+        <div class="col-5">
+            <section id="prices">
+              <h5>定品定价</h5>
+              <div class="row row-head">
+                <div class="col-3">#</div>
+                <div class="col-3">定价</div>
+                <div class="col">利润</div>
+                <div class="col">净</div>
+                <div class="col">毛</div>
+              </div>
+              <div class="row">
+                <div class="col-3">销售价</div>
+                <div class="col-3"><input type="text"/></div>
+                <div class="col">0</div>
+                <div class="col">0%</div>
+                <div class="col">0%</div>
+              </div>
+              <div class="row">
+                <div class="col-3">京东价</div>
+                <div class="col-3"><input type="text"/></div>
+                <div class="col">0</div>
+                <div class="col">0%</div>
+                <div class="col">0%</div>
+              </div>
+              <div class="row">
+                <div class="col-3">划线价</div>
+                <div class="col-3"><input type="text"/></div>
+                <div class="col">0</div>
+                <div class="col">0%</div>
+                <div class="col">0%</div>
+              </div>
+            </section>
+          
+        <section data-spy="scroll" data-offset="0" id="cost">
+            <h5>成本结构</h5>
+            <div class="row row-head">
+              <div class="col-3">#</div>
+              <div class="col">金额</div>
+              <div class="col">成本比</div>
+              <div class="col">销售比</div>
+            </div>
+            <div class="row">
+              <div class="col-4">商品成本</div>
+              <div class="col">0</div>
+              <div class="col">0%</div>
+              <div class="col">0%</div>
+            </div>
+            <div class="row">
+              <div class="col-4">耗材成本</div>
+              <div class="col">0</div>
+              <div class="col">0%</div>
+              <div class="col">0%</div>
+            </div>
+            <div class="row">
+              <div class="col-4">物流成本</div>
+              <div class="col">0</div>
+              <div class="col">0%</div>
+              <div class="col">0%</div>
+            </div>
+            <div class="row">
+              <div class="col-4">营销成本</div>
+              <div class="col">0</div>
+              <div class="col">0%</div>
+              <div class="col">0%</div>
+            </div>
+            <div class="row row-foot">
+              <div class="col-4">总计</div>
+              <div class="col">0</div>
+              <div class="col">100%</div>
+              <div class="col">0%</div>
+            </div>
+          </section>
+          <div>
+            <button id="calculate" type="button" class="btn btn-primary btn-block">开始计算</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+      $('.add-item').click(function(){
+        var $item = $('<div class="row"/>');
+        $item.append('<div class="col-4"><input type="text"/></div>');
+        $item.append('<div class="col"><input type="text"/></div>');
+        $item.append('<div class="col"><input type="text"/></div>');
+        $item.append('<div class="col">0</div>');
+        $item.append('<div class="col"><a class="remove-item">[-]</a></div>');
+        $(this).closest('section').append($item);
+      });
+      $('section').delegate('.remove-item', 'click', function(){
+        $(this).closest('.row').remove();
+      });
+
+      var logistics_fees = { sf: 22, yt: 8 }
+      $('#company').change(function(){
+        $(this).closest('.row').find('input').val(logistics_fees[$(this).val()]);
+      });
+
+      // 开始计算
+      $('#calculate').click(function(){
+        var costs = [0, 0, 0, 0, 0];
+        // 商品成本
+        $('#goods .row:not(:first)').each(function(){
+          var $inputs = $('input', this);
+          var item = $($inputs[1]).val() * $($inputs[2]).val();
+          $('div', this).get(3).innerHTML = item;
+          costs[0] += item;
+          costs[4] += item;
+        });
+        // 耗材成本
+        $('#material .row:not(:first)').each(function(){
+          var $inputs = $('input', this);
+          var item = $($inputs[1]).val() * $($inputs[2]).val();
+          $('div', this).get(3).innerHTML = item;
+          costs[1] += item;
+          costs[4] += item;
+        });
+        // 物流成本
+        costs[2] = $('#logistics input').val() * 1;
+        costs[4] += costs[2];
+        // 营销成本
+        var prices = [];
+        $('#prices input').each(function(i) {
+          prices[i] = $(this).val() * 1;
+        });
+        costs[3] = $('#advertise input').val() * prices[0] / 100;
+        costs[4] += costs[3];
+
+        var $costs = $('#cost .row:not(:first)').each(function(i){
+          $('div', this)[1].innerHTML = costs[i].toFixed(2);
+          $('div', this)[2].innerHTML = (costs[i] / costs[4] * 100).toFixed(2) + '%';
+          $('div', this)[3].innerHTML = (costs[i] / prices[0] * 100).toFixed(2) + '%';
+        });
+      });
+    });
+    </script>
+  </body>
+</html>
